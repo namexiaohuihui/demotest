@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>自动化测试报告测试结果如下：</title>
+    <meta name="generator" content="HTMLTestRunner 0.9.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+    body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+    table       { font-size: 100%; }
+    pre         { white-space: pre-wrap;word-wrap: break-word; }
+
+    /* -- heading ---------------------------------------------------------------------- */
+    h1 {
+        font-size: 16pt;
+        color: gray;
+    }
+    .heading {
+        margin-top: 0ex;
+        margin-bottom: 1ex;
+    }
+
+    .heading .attribute {
+        margin-top: 1ex;
+        margin-bottom: 0;
+    }
+
+    .heading .description {
+        margin-top: 2ex;
+        margin-bottom: 3ex;
+    }
+
+    /* -- css div popup ------------------------------------------------------------------------ */
+    a.popup_link {
+    }
+
+    a.popup_link:hover {
+        color: red;
+    }
+    .img{
+        height: 100%;
+        border-collapse: collapse;
+        border: 2px solid #777;
+    }
+    .imgyuan{
+        height: 20px;
+        border-radius: 12px;
+        background-color: red;
+        padding-left: 13px;
+        margin: 0 auto;
+        position: relative;
+        top: -40px;
+        background-color: rgba(1, 150, 0, 0.3);
+    }
+    .imgyuan font{
+        border:1px solid white;
+        width:11px; 
+        height:11px;
+        border-radius:50%;
+        margin-right: 9px;
+        margin-top: 4px;
+        display: block;
+        float: left;
+        background-color: white;
+    }
+    .screenshots {
+        z-index: 100;
+        position:fixed;
+        height: 80%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        display: none;
+    }
+    .close_shots {
+        background-image: url(../../demo/tupian.png)
+        background-size: 22px 22px;
+        -moz-background-size: 22px 22px;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: 22px;
+        z-index: 99;
+        width: 22px;
+    }
+    .popup_window {
+        display: none;
+        position: relative;
+        left: 0px;
+        top: 0px;
+        /*border: solid #627173 1px; */
+        padding: 10px;
+        /*background-color: #E6E6D6; */
+        font-family: "Lucida Console", "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 8pt;
+        /* width: 500px;*/
+    }
+
+    }
+    /* -- report ------------------------------------------------------------------------ */
+    #show_detail_line {
+        margin-top: 3ex;
+        margin-bottom: 1ex;
+    }
+    #result_table {
+        width: 99%;
+    }
+    #header_row {
+        font-weight: bold;
+        color: #303641;
+        background-color: #ebebeb;
+    }
+    #total_row  { font-weight: bold; }
+    .passClass  { color: #bdedbc; }
+    .failClass  { color: #ffefa4; }
+    .errorClass { color: #ffc9c9; }
+    .skipClass { color: #4169E1; }
+    .passCase   { color: #FF00FF; }
+    .failCase   { color: #FF6600; font-weight: bold; }
+    .errorCase  { color: #c00; font-weight: bold; }
+    .skipCase  { color: #0000FF; font-weight: bold; }
+    .hiddenRow  { display: none; }
+    .testcase   { margin-left: 2em; }
+
+
+    /* -- ending ---------------------------------------------------------------------- */
+    #ending {
+    }
+
+    #div_base {
+                position:absolute;
+                top:0%;
+                left:5%;
+                right:5%;
+                width: auto;
+                height: auto;
+                margin: -15px 0 0 0;
+    }
+</style>
+
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/echarts.common.min.js"></script>
+</head>
+<body>
+    <script language="javascript" type="text/javascript"><!--
+    output_list = Array();
+
+    /* level - 0:Summary; 1:Passed; 2:Failed; 3:Errored; 4:Skiped; 5:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (["ft","pt","et","st"].indexOf(id.substr(0,2))!=-1){
+                if (level == 1 && id.substr(0,2) == 'pt') {
+                    tr.className = '';
+                }
+                else if (level == 2 && id.substr(0,2) == 'ft') {
+                    tr.className = '';
+                }
+                else if (level == 3 && id.substr(0,2) == 'et') {
+                    tr.className = '';
+                }
+                else if (level == 4 && id.substr(0,2) == 'st') {
+                    tr.className = '';
+                }
+                else if ( level == 5 ) {
+                    tr.className = '';
+                }
+                else {
+                    tr.className = 'hiddenRow';
+                }
+                document.getElementById('div_'+id).style.display = 'none'
+            }
+        }
+    }
+
+    /* continue; */
+    function showClassDetail(cid, count) {
+        var id_list = Array();
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (["ft","pt","et","st"].indexOf(id.substr(0,2))!=-1){
+                if (id.substr(2,1) == cid.substr(1)){
+                    tr = document.getElementById(id);
+                    trcn = tr.className;
+                    if(trcn = 'hiddenRow'){
+                       id_list[i] = id; 
+                    }
+                }
+            }
+        }
+		count = id_list.length;
+        for (var i = 0; i < count; i++) {
+			if(id_list[i] != undefined){
+				tid = id_list[i];
+				document.getElementById('div_'+tid).style.display = 'block'
+			}
+        }
+    }
+
+
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+
+
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+
+    /* obsoleted by detail in <div>
+    function showOutput(id, name) {
+        var w = window.open("", //url
+                        name,
+                        "resizable,scrollbars,status,width=800,height=450");
+        d = w.document;
+        d.write("<pre>");
+        d.write(html_escape(output_list[id]));
+        d.write("\n");
+        d.write("<a href='javascript:window.close()'>close</a>\n");
+        d.write("</pre>\n");
+        d.close();
+    }
+    */
+    function show_img(obj) {
+        var obj1 = obj.nextElementSibling
+        obj1.style.display='block'
+        var index = 0;//每张图片的下标，
+        var len = obj1.getElementsByTagName('img').length;
+        var imgyuan = obj1.getElementsByClassName('imgyuan')[0]
+        //var start=setInterval(autoPlay,500);
+        obj1.onmouseover=function(){//当鼠标光标停在图片上，则停止轮播
+            clearInterval(start);
+        }
+        obj1.onmouseout=function(){//当鼠标光标不停在图片上，则开始轮播
+            start=setInterval(autoPlay,1000);
+        }    
+        for (var i = 0; i < len; i++) {
+            var font = document.createElement('font')
+            imgyuan.appendChild(font)
+        }
+        var lis = obj1.getElementsByTagName('font');//得到所有圆圈
+        changeImg(0)
+        var funny = function (i) {
+            lis[i].onmouseover = function () {
+                index=i
+                changeImg(i)
+            }
+        }
+        for (var i = 0; i < lis.length; i++) {
+            funny(i);
+        }
+        
+        function autoPlay(){
+            if(index>len-1){
+                index=0;
+                clearInterval(start); //运行一轮后停止
+            }
+            changeImg(index++);
+        }
+        imgyuan.style.width= 25*len +"px";
+        //对应圆圈和图片同步
+        function changeImg(index) {
+            var list = obj1.getElementsByTagName('img');
+            var list1 = obj1.getElementsByTagName('font');
+            for (i = 0; i < list.length; i++) {
+                list[i].style.display = 'none';
+                list1[i].style.backgroundColor = 'white';
+            }
+            list[index].style.display = 'block';
+            list1[index].style.backgroundColor = 'blue';
+        }
+    
+    }
+    function hide_img(obj){
+        obj.parentElement.style.display = "none";
+        obj.parentElement.getElementsByClassName('imgyuan')[0].innerHTML = "";
+    }
+
+    
+    --></script>
+
+    <div id="div_base">
+        
+    <div class='page-header' style="float: left;width:50%;">
+        <h1>自动化测试报告测试结果如下：</h1>
+    <p class='attribute'><strong>开始时间:</strong> 2019-10-28 09:40:30</p>
+<p class='attribute'><strong>运行时长:</strong> 0:02:54.370656</p>
+<p class='attribute'><strong>状态:</strong> 成功 10</p>
+<p class='attribute'><strong>用例总数:</strong> 10</p>
+
+    </div>
+    <div id="chart" style="width:50%;height:400px;float:left;margin-top:5%;"></div>
+
+        
+    <div class="btn-group btn-group-sm">
+        <button class="btn btn-default" onclick='javascript:showCase(0)'>总结</button>
+        <button class="btn btn-default" onclick='javascript:showCase(1)'>成功</button>
+        <button class="btn btn-default" onclick='javascript:showCase(2)'>失败</button>
+        <button class="btn btn-default" onclick='javascript:showCase(3)'>错误</button>
+        <button class="btn btn-default" onclick='javascript:showCase(4)'>跳过</button>
+        <button class="btn btn-default" onclick='javascript:showCase(5)'>全部</button>
+    </div>
+    <p></p>
+    <table id='result_table' class="table table-bordered">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row'>
+            <td>测试套件/测试用例</td>
+            <td>总数</td>
+            <td>成功</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>跳过</td>
+            <td>查看</td>
+            <td>截图</td>
+        </tr>
+        
+    <tr class='passClass'>
+        <td>case.zentao.user_login.test_login_user.TestLoginUser</td>
+        <td>5</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c1',5)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_run_login_1: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        成功</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <pre>
+        pt1.1: [2019-10-28 09:40:30] - user_login-test_login_user] - INFO: Undefined_Function---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:40:41] - user_login-test_login_user] - INFO: Undefined_Function---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:40:41] - user_login-test_login_user] - INFO: Undefined_Function---L_0001序号的用例开始运行
+[2019-10-28 09:40:42] - ActionVisible] - INFO: is_visible_input---输入的信息(rewe)
+[2019-10-28 09:40:43] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为rewe
+[2019-10-28 09:40:44] - ActionVisible] - INFO: is_visible_input---输入的信息(wfw)
+[2019-10-28 09:40:45] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为wfw
+[2019-10-28 09:40:46] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:40:46] - user_login-test_login_user] - INFO: test_run_login-L_0001---登录失败的原因为:登录失败，请检查您的用户名或密码是否填写正确。
+[2019-10-28 09:40:46] - user_login-test_login_user] - INFO: test_run_login-L_0001---L_0001序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_run_login_2: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        成功</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <pre>
+        pt1.2: [2019-10-28 09:40:49] - user_login-test_login_user] - INFO: test_run_login-L_0001---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:40:59] - user_login-test_login_user] - INFO: test_run_login-L_0001---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:40:59] - user_login-test_login_user] - INFO: test_run_login-L_0001---L_0002序号的用例开始运行
+[2019-10-28 09:41:00] - ActionVisible] - INFO: is_visible_input---输入的信息()
+[2019-10-28 09:41:01] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为
+[2019-10-28 09:41:01] - ActionVisible] - INFO: is_visible_input---输入的信息()
+[2019-10-28 09:41:02] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为
+[2019-10-28 09:41:03] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:41:03] - user_login-test_login_user] - INFO: test_run_login-L_0002---登录失败的原因为:登录失败，请检查您的用户名或密码是否填写正确。
+[2019-10-28 09:41:03] - user_login-test_login_user] - INFO: test_run_login-L_0002---L_0002序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_run_login_3: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        成功</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <pre>
+        pt1.3: [2019-10-28 09:41:06] - user_login-test_login_user] - INFO: test_run_login-L_0002---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:41:16] - user_login-test_login_user] - INFO: test_run_login-L_0002---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:41:16] - user_login-test_login_user] - INFO: test_run_login-L_0002---L_0003序号的用例开始运行
+[2019-10-28 09:41:17] - ActionVisible] - INFO: is_visible_input---输入的信息(qweqwe)
+[2019-10-28 09:41:18] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为qweqwe
+[2019-10-28 09:41:19] - ActionVisible] - INFO: is_visible_input---输入的信息()
+[2019-10-28 09:41:20] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为
+[2019-10-28 09:41:21] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:41:21] - user_login-test_login_user] - INFO: test_run_login-L_0003---登录失败的原因为:登录失败，请检查您的用户名或密码是否填写正确。
+[2019-10-28 09:41:21] - user_login-test_login_user] - INFO: test_run_login-L_0003---L_0003序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_run_login_4: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        成功</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <pre>
+        pt1.4: [2019-10-28 09:41:23] - user_login-test_login_user] - INFO: test_run_login-L_0003---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:41:34] - user_login-test_login_user] - INFO: test_run_login-L_0003---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:41:34] - user_login-test_login_user] - INFO: test_run_login-L_0003---L_0004序号的用例开始运行
+[2019-10-28 09:41:34] - ActionVisible] - INFO: is_visible_input---输入的信息()
+[2019-10-28 09:41:35] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为
+[2019-10-28 09:41:36] - ActionVisible] - INFO: is_visible_input---输入的信息(wfw)
+[2019-10-28 09:41:37] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为wfw
+[2019-10-28 09:41:38] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:41:38] - user_login-test_login_user] - INFO: test_run_login-L_0004---登录失败的原因为:登录失败，请检查您的用户名或密码是否填写正确。
+[2019-10-28 09:41:38] - user_login-test_login_user] - INFO: test_run_login-L_0004---L_0004序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_run_login_5: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        成功</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <pre>
+        pt1.5: [2019-10-28 09:41:40] - user_login-test_login_user] - INFO: test_run_login-L_0004---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:41:51] - user_login-test_login_user] - INFO: test_run_login-L_0004---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:41:51] - user_login-test_login_user] - INFO: test_run_login-L_0004---L_0005序号的用例开始运行
+[2019-10-28 09:41:52] - ActionVisible] - INFO: is_visible_input---输入的信息(demo)
+[2019-10-28 09:41:53] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为demo
+[2019-10-28 09:41:53] - ActionVisible] - INFO: is_visible_input---输入的信息(123456)
+[2019-10-28 09:41:54] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为123456
+[2019-10-28 09:41:55] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:41:55] - user_login-test_login_user] - INFO: test_run_login-L_0005---L_0005序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+    <tr class='passClass'>
+        <td>case.zentao.user_login_two.test_login_user_two.TestLoginUserTwo</td>
+        <td>5</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td><a href="javascript:showClassDetail('c2',5)">详情</a></td>
+        <td>&nbsp;</td>
+    </tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_format_error: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        成功</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <pre>
+        pt2.1: [2019-10-28 09:41:58] - user_login_two-test_login_user_two] - INFO: Undefined_Function---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:42:08] - user_login_two-test_login_user_two] - INFO: Undefined_Function---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:42:08] - user_login_two-test_login_user_two] - INFO: test_format_error---test_format_error序号的用例开始运行
+[2019-10-28 09:42:09] - ActionVisible] - INFO: is_visible_input---输入的信息(rewe)
+[2019-10-28 09:42:10] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为rewe
+[2019-10-28 09:42:10] - ActionVisible] - INFO: is_visible_input---输入的信息(wfw)
+[2019-10-28 09:42:12] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为wfw
+[2019-10-28 09:42:13] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:42:13] - user_login_two-test_login_user_two] - INFO: test_format_error---登录失败的原因为:登录失败，请检查您的用户名或密码是否填写正确。
+[2019-10-28 09:42:13] - user_login_two-test_login_user_two] - INFO: test_format_error---test_format_error序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_input_account: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.2')" >
+        成功</a>
+
+    <div id='div_pt2.2' class="popup_window">
+        <pre>
+        pt2.2: [2019-10-28 09:42:15] - user_login_two-test_login_user_two] - INFO: test_format_error---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:42:26] - user_login_two-test_login_user_two] - INFO: test_format_error---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:42:26] - user_login_two-test_login_user_two] - INFO: test_input_account---test_input_account序号的用例开始运行
+[2019-10-28 09:42:26] - ActionVisible] - INFO: is_visible_input---输入的信息(qweqwe)
+[2019-10-28 09:42:27] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为qweqwe
+[2019-10-28 09:42:28] - ActionVisible] - INFO: is_visible_input---输入的信息()
+[2019-10-28 09:42:29] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为
+[2019-10-28 09:42:30] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:42:30] - user_login_two-test_login_user_two] - INFO: test_input_account---登录失败的原因为:登录失败，请检查您的用户名或密码是否填写正确。
+[2019-10-28 09:42:30] - user_login_two-test_login_user_two] - INFO: test_input_account---test_input_account序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+<tr id='pt2.3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_input_password: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.3')" >
+        成功</a>
+
+    <div id='div_pt2.3' class="popup_window">
+        <pre>
+        pt2.3: [2019-10-28 09:42:32] - user_login_two-test_login_user_two] - INFO: test_input_account---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:42:43] - user_login_two-test_login_user_two] - INFO: test_input_account---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:42:43] - user_login_two-test_login_user_two] - INFO: test_input_password---test_input_password序号的用例开始运行
+[2019-10-28 09:42:44] - ActionVisible] - INFO: is_visible_input---输入的信息()
+[2019-10-28 09:42:45] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为
+[2019-10-28 09:42:45] - ActionVisible] - INFO: is_visible_input---输入的信息(wfw)
+[2019-10-28 09:42:46] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为wfw
+[2019-10-28 09:42:47] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:42:47] - user_login_two-test_login_user_two] - INFO: test_input_password---登录失败的原因为:登录失败，请检查您的用户名或密码是否填写正确。
+[2019-10-28 09:42:47] - user_login_two-test_login_user_two] - INFO: test_input_password---test_input_password序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+<tr id='pt2.4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_not_input: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.4')" >
+        成功</a>
+
+    <div id='div_pt2.4' class="popup_window">
+        <pre>
+        pt2.4: [2019-10-28 09:42:50] - user_login_two-test_login_user_two] - INFO: test_input_password---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:43:01] - user_login_two-test_login_user_two] - INFO: test_input_password---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:43:01] - user_login_two-test_login_user_two] - INFO: test_not_input---test_not_input序号的用例开始运行
+[2019-10-28 09:43:01] - ActionVisible] - INFO: is_visible_input---输入的信息()
+[2019-10-28 09:43:03] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为
+[2019-10-28 09:43:03] - ActionVisible] - INFO: is_visible_input---输入的信息()
+[2019-10-28 09:43:04] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为
+[2019-10-28 09:43:05] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:43:05] - user_login_two-test_login_user_two] - INFO: test_not_input---登录失败的原因为:登录失败，请检查您的用户名或密码是否填写正确。
+[2019-10-28 09:43:05] - user_login_two-test_login_user_two] - INFO: test_not_input---test_not_input序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+<tr id='pt2.5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_succeed_skip: 系统插入-用例场景:该case没有注释,原因为程序中没有打印注释信息</div></td>
+    <td colspan='6' align='center'>
+
+    <!--css div popup start-->
+    <a class="passClass" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.5')" >
+        成功</a>
+
+    <div id='div_pt2.5' class="popup_window">
+        <pre>
+        pt2.5: [2019-10-28 09:43:07] - user_login_two-test_login_user_two] - INFO: test_not_input---浏览器url :http://demo.zentao.net/user-login.html
+[2019-10-28 09:43:18] - user_login_two-test_login_user_two] - INFO: test_not_input---chrome浏览器已经打开,显示时间为5s
+[2019-10-28 09:43:18] - user_login_two-test_login_user_two] - INFO: test_succeed_skip---test_succeed_skip序号的用例开始运行
+[2019-10-28 09:43:19] - ActionVisible] - INFO: is_visible_input---输入的信息(demo)
+[2019-10-28 09:43:20] - ActionVisible] - INFO: is_visible_input---id&gt;&gt;account元素输入内容为demo
+[2019-10-28 09:43:20] - ActionVisible] - INFO: is_visible_input---输入的信息(123456)
+[2019-10-28 09:43:21] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;input[type=password]元素输入内容为123456
+[2019-10-28 09:43:22] - ActionVisible] - INFO: is_visible_input---css&gt;&gt;.btn.btn-primary元素进行点击操作
+[2019-10-28 09:43:22] - user_login_two-test_login_user_two] - INFO: test_succeed_skip---test_succeed_skip序号的用例运行完毕
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+     <td>无截图</td>
+</tr>
+
+        <tr id='total_row'>
+            <td>总计</td>
+            <td>10</td>
+            <td>10</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+        <div id='ending'>&nbsp;</div>
+        
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '测试执行情况-图表展示',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['成功','失败','错误','跳过']
+            },
+            series : [
+                {
+                    name: '测试执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:10, name:'成功'},
+                        {value:0, name:'失败'},
+                        {value:0, name:'错误'},
+                        {value:0, name:'跳过'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    
+    </div>
+</body>
+</html>
